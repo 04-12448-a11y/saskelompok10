@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artificial Intelligence</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent-1:#4b6aff;
+      --accent-2:#8a2be2;
+      --neon-soft:#7ea1ff;
+      --neon-strong:#b48cff;
+       --purp-1: #7b2fff;
+      --purp-2: #a966ff;
+      --purp-3: #c49aff;
+      --bg-light:#f3f7ff;
+      --bg-dark:#071024;
+      --card-light:#ffffff;
+      --card-dark:#0f1724;
+      --text-light:#07203a;
+      --text-dark:#e6eefc;
+    }
+
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background:linear-gradient(180deg,var(--bg-dark),#0b0f19 100%);
+      color:var(--text-dark);
+      transition:background .35s ease,color .35s ease;
+    }
+    body.light-mode{
+      background:linear-gradient(180deg,var(--bg-light),#eef6ff 100%);
+      color:var(--text-light);
+    }
+
+    /* NAVBAR */
+    .navbar{
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      box-shadow:0 8px 28px rgba(75,106,255,0.25);
+    }
+    .navbar .nav-link,.navbar-brand{
+      color:white!important;
+      font-weight:600;
+      transition:.25s;
+    }
+    .navbar .nav-link:hover{
+      text-decoration:underline;
+      color:#e6e4ff !important;
+      text-shadow:0 0 12px var(--neon-soft);
+      transform:translateY(-2px);
+    }
+
+    /* HEADER IMAGE */
+    .Jumbotron{
+      height:250px;
+      background-size:cover;
+      background-position:center;
+      border-bottom:2px solid rgba(255,255,255,0.2);
+      animation:fadeInDown .7s ease;
+    }
+
+    @keyframes fadeInDown{
+      from{opacity:0; transform:translateY(-20px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    /* SIDEBAR */
+    #navbar-example3 .nav-link{
+      color:var(--neon-soft);
+      font-weight:600;
+      border-radius:8px;
+      transition:.25s;
+    }
+    body.light-mode #navbar-example3 .nav-link{
+      color:#233872;
+    }
+    #navbar-example3 .nav-link:hover{
+      background:rgba(75,106,255,.25);
+      color:white!important;
+      padding-left:15px;
+      box-shadow:0 0 10px var(--accent-1);
+    }
+    #navbar-example3 .nav-link.active{
+      background:var(--accent-2);
+      color:white!important;
+      box-shadow:0 0 18px var(--accent-2);
+      transform:translateX(6px);
+    }
+
+    /* CONTENT */
+    .content-box{
+      background:var(--card-dark);
+      padding:25px;
+      border-radius:12px;
+      margin-bottom:25px;
+      box-shadow:0 14px 40px rgba(1,10,32,0.38);
+      animation:fadeUp .8s ease;
+    }
+    body.light-mode .content-box{
+      background:var(--card-light);
+      box-shadow:0 10px 28px rgba(0,0,0,.1);
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(12px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    /* CENTER TITLE */
+    .title-center{
+      text-align:center;
+      font-size:2.2rem;
+      font-weight:700;
+      text-shadow: 0 0 16px var(--purp-1), 0 0 30px var(--purp-2);
+      margin-bottom:20px;
+      animation: neonGlow 2.4s infinite alternate ease-in-out;
+    }
+     @keyframes neonGlow {
+      from {text-shadow: 0 0 6px var(--purp-2);} to {text-shadow: 0 0 22px var(--purp-1), 0 0 40px var(--purp-3);} }
+
+    /* IMAGE CENTER */
+    .img-center{
+      display:block;
+      margin:auto;
+      border-radius:12px;
+      animation:fadeUp .9s ease;
+      box-shadow:0 8px 30px rgba(0,0,0,.35);
+    }
+
+    /* SEARCH HIGHLIGHT */
+    .search-highlight{
+      background:linear-gradient(90deg,rgba(255,238,88,.25),rgba(255,238,88,.15));
+      border-radius:4px;
+      padding:2px 4px;
+    }
+
+    /* PAGINATION */
+    .pagination .page-link{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.15);
+      color:white;
+      transition:.25s;
+    }
+    .pagination .page-link:hover{
+      background:var(--accent-1);
+      box-shadow:0 0 12px var(--accent-1);
+      color:white;
+    }
+    .pagination .active>.page-link{
+      background:var(--accent-2);
+      box-shadow:0 0 18px var(--accent-2);
+    }
+
+    /* FLOAT BUTTON */
+    #modeToggleFloating{
+      position:fixed;
+      bottom:25px;
+      right:25px;
+      padding:10px 16px;
+      border:none;
+      border-radius:999px;
+      background:white;
+      box-shadow:0 6px 22px rgba(0,0,0,.35);
+      cursor:pointer;
+      font-size:20px;
+      z-index:2000;
+      transition:.35s;
+    }
+    body.light-mode #modeToggleFloating{
+      background:#0c1a35;
+      color:white;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html"><img src="./IMG/cropped-logo.png" height="40"></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="Page-1.html">AI</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Dropdown</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="Page-2.html">Kasus</a></li>
+            <li><a class="dropdown-item" href="Agama.html">Sikap Manusia</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="Video.html">Penggunaan AI yang Bijak</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="About Us.html">About Us</a></li>
+      </ul>
+
+      <form class="d-flex" onsubmit="event.preventDefault(); runSearch();">
+        <input id="searchInput" class="form-control me-2" type="search" placeholder="Search...">
+        <button class="btn btn-light" type="button" onclick="runSearch()">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- JUMBOTRON -->
+<div class="Jumbotron" style="
+  background-image:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.25)), url('./IMG/WhatsApp\ Image\ 2025-11-28\ at\ 09.48.41_19af6502.jpg');
+"></div>
+<div class="row m-0">
+
+  <!-- SIDEBAR -->
+  <div class="col-12 col-lg-3 p-4 border-end">
+    <nav id="navbar-example3" class="nav nav-pills flex-column">
+      <a class="nav-link" href="Page-2.html">Kasus</a>
+      <nav class="nav flex-column ms-3 mt-2">
+<a class="nav-link my-1" href="Page-2.html">Deepfake</a>
+        <a class="nav-link my-1" href="Page-3.html" data-section="analisa">Analisa</a>
+      </nav>
+    </nav>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="col-12 col-lg-9 p-4">
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true">
+      <div id="Page-3-2" class="content-box">
+        <h2 class="title-center">Analisa</h2>
+        <p style="text-indent:50px; text-align:justify;">
+Berdasarkan pada Pasal 27 ayat (1) UUD 1945 yang menekankan pada pengingkaran kewajiban warga negara, secara definitif mereka yang melakukan penipuan dengan teknologi AI, merupakan penegakan hukum yang mengabaikan pemenuhan kewajiban dan hak perasaan aman dan mendapatkan perlindungan dari warga negara. Kasus ini menggunakan deepfake dan menyamar sebagai pejabat negara, juga terkait dengan pengingkaran kehormatan, pengingkaran kewibawaan dan penurunan kepercayaan masyarakat terhadap suatu institusi negara. Penggunaan deepfake untuk menyamar sebagai pejabat negara juga mencederai kehormatan dan wibawa institusi negara, serta merusak kepercayaan masyarakat terhadap pemerintah. Informasi tambahan ini menjelaskan bahwa negara memang punya kewajiban untuk memberikan perlindungan kepada semua warga negara dari ancaman apapun, termasuk dari kejahatan siber dan penyalahgunaan AI. Penggunaan deepfake untuk menyamar sebagai pejabat negara juga mencederai kehormatan dan wibawa institusi negara, serta merusak kepercayaan masyarakat terhadap pemerintah. Penipuan menggunakan teknologi AI merupakan penegakan hukum yang mengabaikan pemenuhan kewajiban dan hak perasaan aman dan mendapatkan perlindungan dari warga negara. Bagi negara, hal ini menjadi permasalahan melindungi warga negara dan menggali potensi hukum yang positif untuk menciptakan regulasi yang menegakan dan menyesuaikan hukum. Dengan demikian, kasus penipuan deep fake ini tidak hanya menjadi permasalahan hukum, tetapi juga menjadi tantangan baru dalam menegakan hak dan menciptakan kewajiban yang bersifat konstitusi. Oleh karena itu, penegakan hukum yang meningkat, pembaruan regulasi, dan pendidikan publik yang lebih intensif diperlukan untuk memastikan bahwa prinsip-prinsip UUD 1945 terus diterapkan secara efektif di tengah perkembangan teknologi modern.
+        </p>
+
+        <!-- PAGINATION -->
+        <nav aria-label="Page navigation example" class="mt-4">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="Page-3.html">&laquo;</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="Page-3.html">1</a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="Page-3-2.html">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="Page-3-2.html">&raquo;</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DARK/LIGHT TOGGLE BUTTON -->
+<button id="modeToggleFloating">🌙</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* MODE TOGGLE */
+const modeBtn=document.getElementById("modeToggleFloating");
+const body=document.body;
+
+if(localStorage.getItem("mode")==="light"){
+  body.classList.add("light-mode");
+  modeBtn.textContent="🌞";
+}
+
+modeBtn.onclick=()=>{
+  body.classList.toggle("light-mode");
+  const isLight=body.classList.contains("light-mode");
+  modeBtn.textContent=isLight?"🌞":"🌙";
+  localStorage.setItem("mode",isLight?"light":"dark");
+};
+
+/* SEARCH FUNCTION */
+function runSearch(){
+  const q=document.getElementById("searchInput").value.toLowerCase();
+  if(!q)return;
+
+  document.querySelectorAll(".search-highlight")
+    .forEach(e=>e.classList.remove("search-highlight"));
+
+  const items=document.querySelectorAll("p,h1,h2,h3,h4");
+
+  let found=false;
+  items.forEach(el=>{
+    if(el.innerText.toLowerCase().includes(q)){
+      el.classList.add("search-highlight");
+      if(!found){
+        el.scrollIntoView({behavior:"smooth",block:"center"});
+        found=true;
+      }
+    }
+  });
+  if(!found) alert("Tidak ditemukan: "+q);
+  document.getElementById("searchInput").value="";
+}
+// --- SET ACTIVE FOR SIDEBAR + PAGINATION ---
+const currentPage = window.location.pathname.split("/").pop();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPage = window.location.pathname.split("/").pop();
+const sectionMap = {
+  "Page-3.html": "analisa",
+  "Page-3-2.html": "analisa"
+};
+
+const currentSection = sectionMap[currentPage];
+
+document.querySelectorAll("#navbar-example3 a[data-section]").forEach(link => {
+  const sec = link.getAttribute("data-section");
+  if (sec && sec === currentSection) {
+    link.classList.add("active");
+  }
+});
+  // SIDEBAR & NAVBAR
+  document.querySelectorAll("a.nav-link, a.dropdown-item").forEach(link => {
+    const linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+      link.classList.add("active");
+    }
+  });
+
+  // PAGINATION
+  document.querySelectorAll(".pagination .page-item a").forEach(p => {
+    const linkPage = p.getAttribute("href");
+
+    if (linkPage === currentPage) {
+      p.parentElement.classList.add("active");
+    }
+  });
+
+});
+</script>
+
+</body>
+</html>

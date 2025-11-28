@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artificial Intelligence</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent-1: #4b6aff;
+      --accent-2: #8a2be2;
+      --neon-light: #5a8cff;
+      --neon-dark: #9db7ff;
+      --bg-light: #f3f7ff;
+      --bg-dark: #071024;
+      --card-light: #ffffff;
+      --card-dark: #0f1724;
+      --text-light: #07203a;
+      --text-dark: #e6eefc;
+    }
+
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background:linear-gradient(180deg,var(--bg-dark),#0b0f19 100%);
+      color:var(--text-dark);
+      transition:background .35s ease,color .35s ease;
+    }
+    body.light-mode{
+      background:linear-gradient(180deg,var(--bg-light),#eef6ff 100%);
+      color:var(--text-light);
+    }
+
+    /* NAVBAR */
+    .navbar{
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      box-shadow:0 8px 28px rgba(75,106,255,0.2);
+    }
+    .navbar .nav-link, .navbar-brand{
+      color:white !important;
+      font-weight:600;
+      transition:.25s;
+    }
+    .navbar .nav-link:hover{
+      text-decoration:underline;
+      color:#e6e4ff !important;
+      text-shadow:0 0 12px var(--neon-soft);
+      transform:translateY(-2px);
+    }
+
+    /* JUMBOTRON */
+    .Jumbotron{
+      height:250px;
+      border-bottom:2px solid rgba(255,255,255,0.15);
+      background-size:cover;
+      background-position:center;
+    }
+
+    /* SIDE NAV */
+    #navbar-example3 .nav-link{
+      color:var(--neon-dark);
+      font-weight:600;
+      border-radius:8px;
+      transition:0.25s;
+    }
+    body.light-mode #navbar-example3 .nav-link{
+      color:#1a2a5a;
+    }
+    #navbar-example3 .nav-link:hover{
+      background:var(--accent-1);
+      color:white !important;
+      padding-left:15px;
+      transform:translateX(4px);
+    }
+    #navbar-example3 .nav-link.active{
+      background:var(--accent-2);
+      color:white !important;
+      box-shadow:0 0 12px rgba(138,43,226,0.35);
+    }
+
+    /* CONTENT BOX */
+    .content-box{
+      background:var(--card-dark);
+      padding:25px;
+      border-radius:12px;
+      margin-bottom:25px;
+      box-shadow:0 14px 40px rgba(1,10,32,0.38);
+      transition:background .3s ease;
+      animation:fadeIn .6s ease;
+    }
+    body.light-mode .content-box{
+      background:var(--card-light);
+      box-shadow:0 8px 18px rgba(0,0,0,0.1);
+    }
+
+    @keyframes fadeIn{
+      from{ opacity:0; transform:translateY(10px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    /* SEARCH HIGHLIGHT */
+    .search-highlight{
+      background:linear-gradient(90deg, rgba(255,238,88,0.25), rgba(255,238,88,0.15));
+      border-radius:4px;
+      padding:2px 4px;
+    }
+
+    /* FLOATING DARK/LIGHT MODE BUTTON */
+    #modeToggleFloating{
+      position:fixed;
+      bottom:25px;
+      right:25px;
+      z-index:2000;
+      padding:10px 16px;
+      border:none;
+      border-radius:999px;
+      background:white;
+      box-shadow:0 8px 28px rgba(2,8,30,0.25);
+      cursor:pointer;
+      font-weight:bold;
+      transition:.3s;
+    }
+    body.light-mode #modeToggleFloating{
+      background:#0c1a35;
+      color:white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html"><img src="./IMG/cropped-logo.png"height="40" width="40"></a>
+ <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="Page-1.html">AI</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="Page-2.html">Kasus</a></li>
+              <li><a class="dropdown-item" href="Agama.html">Sikap Manusia</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="Video.html">Penggunaan AI yang Bijak</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link text-light" href="About Us.html">About Us</a></li>
+        </ul>
+     
+      <form class="d-flex" onsubmit="event.preventDefault(); runSearch();">
+        <input id="searchInput" class="form-control me-2" type="search" placeholder="Search...">
+        <button class="btn btn-light" type="button" onclick="runSearch()">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- JUMBOTRON -->
+<div class="Jumbotron" style="
+  background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.25)), url('./IMG/Dampak\ negatif\ artificial\ intelligence.jpg');
+"></div>
+
+<div class="row m-0">
+  <!-- SIDEBAR -->
+  <div class="col-12 col-lg-3 p-4 border-end">
+    <nav id="navbar-example3" class="nav nav-pills flex-column">
+      <a class="nav-link" href="#definisi">Artificial Intelligence</a>
+      <nav class="nav nav-pills flex-column ms-3">
+        <a class="nav-link my-1" href="#definisi">Definisi</a>
+        <a class="nav-link my-1" href="#permasalahan">Permasalahan</a>
+      </nav>
+    </nav>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="col-12 col-lg-9 p-4"
+       data-bs-spy="scroll" data-bs-target="#navbar-example3"
+       data-bs-smooth-scroll="true" tabindex="0">
+
+    <!-- DEFINISI -->
+    <div id="definisi" class="content-box">
+      <h1>Artificial Intelligence</h1>
+      <hr class="border border-danger opacity-50">
+      <p style="text-indent:40px; text-align:justify">
+Artificial Intelligence adalah teknologi yang memungkinkan mesin atau komputer untuk meniru kemampuan pemikiran manusia. AI atau kecerdasan buatan adalah sistem yang dapat memahami, belajar, dan berpikir seperti manusia dalam beberapa aspek, seperti mengenali pola, membuat prediksi, dan menyelesaikan masalah kompleks. Penggunaan AI sudah sangat luas dalam berbagai bidang, termasuk bisnis, kesehatan, dan hiburan.
+      </p>
+      <p style="text-indent:40px; text-align:justify">
+Tidak hanya itu, AI juga mencakupi beberapa bidang teknologi, seperti machine learning, deep learning, dan natural language processing (NLP).
+      </p>
+    </div>
+
+    <!-- PERMASALAHAN -->
+    <div id="permasalahan" class="content-box">
+      <h1>Masalah Artificial Intelligence</h1>
+      <hr class="border border-danger opacity-50">
+      <p style="text-indent:40px; text-align:justify">
+AI dibuat untuk dapat membantu meningkatkan efisiensi dan produktivitas, tetapi, masalahnya manusia menjadi lebih malas, daripada lebih produktif. Mereka terlalu tergantung pada AI. Di masa kini, di seluruh dunia, banyak peserta didik maupun mahasiswa sering memakai AI untuk mengerjakan tugas atau proyek, bahkan sampai ujian. Kebiasaan ini akan sangat berdampak bagi manusia, (bukan yang baik). Kebiasaan ini bisa menghancurkan Sumber Daya Manusia dan membuatkan masa depan yang memburuk.
+      </p>
+      <p style="text-indent:40px; text-align:justify">
+Dengan keadaan masa kini, bisa dikatakan bahwa jika memakai AI untuk mengerjakan tugas atau ulangan, itu bukan dianggap sebagai “belajar” karena ilmu yang diberikan hanya dibaca lalu ditinggalkan, memiliki konsep sama seperti masuk dari telinga kiri lalu keluar dari telinga kanan. Hal ini bisa membuat manusia kekurangan keterampilannya untuk mengkritisi dan menganalisis. Tidak hanya pendidikan, juga terdapat banyak aspek lainnya. Misalkan, Emosi. Di realita, membuat sebuah karya seni membutuhkan pengangkutan dari emosi, maupun di musik atau karya gambar. Dengan AI, pengangkutan emosi itu hilang. Karena itu, jika kita tidak mengangkut emosi, kita tidak akan mengetahui fungsinya di dunia.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- DARK/LIGHT BUTTON -->
+<button id="modeToggleFloating">🌙</button>
+
+<!-- SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  /* DARK / LIGHT MODE */
+  const modeBtn = document.getElementById("modeToggleFloating");
+  const body = document.body;
+
+  if(localStorage.getItem("mode") === "light"){
+    body.classList.add("light-mode");
+    modeBtn.textContent = "🌞";
+  }
+
+  modeBtn.onclick = () => {
+    body.classList.toggle("light-mode");
+    const isLight = body.classList.contains("light-mode");
+    modeBtn.textContent = isLight ? "🌞" : "🌙";
+    localStorage.setItem("mode", isLight ? "light" : "dark");
+  };
+
+  /* SEARCH */
+  function runSearch(){
+    const q = document.getElementById("searchInput").value.toLowerCase();
+    if(!q) return;
+
+    document.querySelectorAll(".search-highlight")
+      .forEach(e => e.classList.remove("search-highlight"));
+
+    const items = document.querySelectorAll("p, h1, h2, h3, h4");
+
+    let found = false;
+    items.forEach(el=>{
+      if(el.innerText.toLowerCase().includes(q)){
+        el.classList.add("search-highlight");
+        if(!found){
+          el.scrollIntoView({behavior:"smooth", block:"center"});
+          found = true;
+        }
+      }
+    });
+
+    if(!found) alert("Tidak ditemukan: " + q);
+
+    document.getElementById("searchInput").value = "";
+  }
+</script>
+
+</body>
+</html>
